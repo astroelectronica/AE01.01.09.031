@@ -1,0 +1,22 @@
+*load regulation
+*
+*max power of load
+.meas pload_max param (I(I1)*V(/vout))
+*max voltage sense resistors
+.meas vsense_max max V(vcc,/vout)
+*max current 1 sense resistor
+.meas isense_max_1res max I(R1)
+*max power 1 sense resistor
+.meas psense_max_1res param (isense_max_1res*vsense_max)
+*max voltage out monitor
+.meas vocm_max max V(/current_feedback)
+*
+*minimum ratings for Vsense=10mV
+.param vsense_min_10mv=0.01
+*min voltage out monitor for Vsense=10mV
+.meas vocm_min_10mv find V(/current_feedback) when V(vcc,/vout)=vsense_min_10mv
+*min current load for Vsense=10mV
+.meas iload_min_10mv find I(I1) when V(/current_feedback)=vocm_min_10mv
+*min power load for Vsense=10mV
+.meas pload_min_10mv param (iload_min_10mv*V(/vout))
+*

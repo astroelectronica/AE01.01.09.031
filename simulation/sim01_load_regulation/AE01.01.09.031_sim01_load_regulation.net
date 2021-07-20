@@ -1,0 +1,6 @@
+*load regulation
+.include ../AE01.01.09.031.cir
+.param Rsense=0.2
+.param ILOAD=10
+.param VIN=75
+.dc I1 0 {ILOAD} 0.001
